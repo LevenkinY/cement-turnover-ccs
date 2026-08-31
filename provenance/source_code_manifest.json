@@ -1,0 +1,208 @@
+{
+  "evidence_version": "20260829",
+  "files": [
+    {
+      "source_path": "models/v4/src_v4/__init__.py",
+      "release_path": "models/v4/src_v4/__init__.py",
+      "sha256": "ecd9afcb4ed860eeb5b9534936e05bdfc071bbd009becd80075ebe2b03150ef2",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "models/v4/src_v4/config_v4.py",
+      "release_path": "models/v4/src_v4/config_v4.py",
+      "sha256": "beea201d250df0b0fcf300fa81a5089d854302f32e1302aa4f7c1a7836954f25",
+      "frozen_20260829_sha256": "beea201d250df0b0fcf300fa81a5089d854302f32e1302aa4f7c1a7836954f25",
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "models/v4/src_v4/data_loader_v4.py",
+      "release_path": "models/v4/src_v4/data_loader_v4.py",
+      "sha256": "3e169cb584357d07ae058f60a92dfc2415900f6ada9f31be9da2681a072858a6",
+      "frozen_20260829_sha256": "3e169cb584357d07ae058f60a92dfc2415900f6ada9f31be9da2681a072858a6",
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "models/v4/src_v4/main.py",
+      "release_path": "models/v4/src_v4/main.py",
+      "sha256": "6be0c0997c61e4ba8486ad25e34a52ad7e724234b3af46c33dac011fb1f9140a",
+      "frozen_20260829_sha256": "6be0c0997c61e4ba8486ad25e34a52ad7e724234b3af46c33dac011fb1f9140a",
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "models/v4/src_v4/counterfactual.py",
+      "release_path": "models/v4/src_v4/counterfactual.py",
+      "sha256": "4636243bb73c3b19aba0292e151feac8a28196b715801f2574a7a9acd88f3c25",
+      "frozen_20260829_sha256": "4636243bb73c3b19aba0292e151feac8a28196b715801f2574a7a9acd88f3c25",
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "models/v4/src_v4/near_optimal_identity.py",
+      "release_path": "models/v4/src_v4/near_optimal_identity.py",
+      "sha256": "c6ccb0b25962cd9725fca01fd97623502870a2c3f193f3d2516f85123dc91201",
+      "frozen_20260829_sha256": "c6ccb0b25962cd9725fca01fd97623502870a2c3f193f3d2516f85123dc91201",
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "models/v4/src_v4/model/__init__.py",
+      "release_path": "models/v4/src_v4/model/__init__.py",
+      "sha256": "8914aac22938f0d62f6b8495ba897abadb4c561bcfdf7dfc762291c94d2ed097",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "models/v4/src_v4/model/final_builder.py",
+      "release_path": "models/v4/src_v4/model/final_builder.py",
+      "sha256": "317ee8f516afc2998ff04863da04db9860cfeba99fff32fa834f1876f85246d0",
+      "frozen_20260829_sha256": "317ee8f516afc2998ff04863da04db9860cfeba99fff32fa834f1876f85246d0",
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "models/v4/src_v4/results/__init__.py",
+      "release_path": "models/v4/src_v4/results/__init__.py",
+      "sha256": "1648ef9e2b07dd6f37b7b8ba21fb4a2d5d6d322e1da4c76de694402d76c69e93",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "models/v4/src_v4/results/extract.py",
+      "release_path": "models/v4/src_v4/results/extract.py",
+      "sha256": "c42f261931acae0ca2bf816343e8f7b1c14608076ffb850249c330483f38df5f",
+      "frozen_20260829_sha256": "c42f261931acae0ca2bf816343e8f7b1c14608076ffb850249c330483f38df5f",
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "models/v4/tests/test_final_protocol.py",
+      "release_path": "models/v4/tests/test_final_protocol.py",
+      "sha256": "9afb6e5fa133efb8b901ec4b0c4be6bbd0966db0dd51c994d74bf8b730748227",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "models/v4/tests/test_demand_and_lifetime_outputs.py",
+      "release_path": "models/v4/tests/test_demand_and_lifetime_outputs.py",
+      "sha256": "fcf511093e8f9cc70abe60c0337e169c5a639a4a011026ba0ceee475ac2e7ad2",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "scripts/v4/analyze_capacity_feedback_counterfactual.py",
+      "release_path": "scripts/v4/analyze_capacity_feedback_counterfactual.py",
+      "sha256": "fea1cae3478b07b6f38603483ce06b3bb9d613207dba745906fe772b874e24e4",
+      "frozen_20260829_sha256": "fea1cae3478b07b6f38603483ce06b3bb9d613207dba745906fe772b874e24e4",
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "scripts/v4/analyze_storage_feedback_counterfactual.py",
+      "release_path": "scripts/v4/analyze_storage_feedback_counterfactual.py",
+      "sha256": "980e5a8ea90ac1a03c6737de544730549ae4947523e620bd9e6f4aa14f67f69b",
+      "frozen_20260829_sha256": "980e5a8ea90ac1a03c6737de544730549ae4947523e620bd9e6f4aa14f67f69b",
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "scripts/v4/analyze_near_optimal_identity_frontier.py",
+      "release_path": "scripts/v4/analyze_near_optimal_identity_frontier.py",
+      "sha256": "f43ba8584b08257e4bb4e9524d68a2fb49cdc6667e181ef192728d867d3b69d4",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "scripts/v4/analyze_writing_ready_storyline_v2.py",
+      "release_path": "scripts/v4/analyze_writing_ready_storyline_v2.py",
+      "sha256": "4cadb7c41f3b3d5a3aa87c8b27dc3d74fa1a3252bd07e2670e8f77e9950f45d2",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "scripts/v4/analyze_robust_corridor_opportunities.py",
+      "release_path": "scripts/v4/analyze_robust_corridor_opportunities.py",
+      "sha256": "c68b1e1ac7a6ccabc2f312f02dc13fc3111faff5949a5e46bbef56164e3c35c0",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "scripts/v4/build_utilization_postprocess_20260822.py",
+      "release_path": "scripts/v4/build_utilization_postprocess_20260822.py",
+      "sha256": "bcbcb637a41a854ece3a6ac9a30ff523f0b7b060a35a93b3f9380defe31e6ef6",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "scripts/v4/prepare_main_figure_data_2026_v2.py",
+      "release_path": "scripts/v4/prepare_main_figure_data_2026_v2.py",
+      "sha256": "f936d75dcc2e86864978505020ec1ba33a1ff419167013ffd17bf47a255eeaab",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "scripts/v4/figure_system_2026_common.py",
+      "release_path": "scripts/v4/figure_system_2026_common.py",
+      "sha256": "a26b174b2e6ed8b40a049dc3af99947c7031d5e038f03f5b05ecfe13bc865a97",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "scripts/v4/make_main_figures_2026_v2.py",
+      "release_path": "scripts/v4/make_main_figures_2026_v2.py",
+      "sha256": "70c39876298d77515c8289e61b310a0d478a737d45a98da9d3fe3f357e5d8e69",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "scripts/v4/make_si_figures_2026_v2.py",
+      "release_path": "scripts/v4/make_si_figures_2026_v2.py",
+      "sha256": "3cccf734b66d5867375069586bda16f4dc9b994e5f001f1f639cee3a894f7bc8",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "scripts/v4/make_paper_figures_2026_si.py",
+      "release_path": "scripts/v4/make_paper_figures_2026_si.py",
+      "sha256": "2b793d6079d7c43a84f13f2c5ba11b850ec31fd2c6d708c277782705de0e7f22",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "scripts/v4/make_fig_source_field_evolution.py",
+      "release_path": "scripts/v4/make_fig_source_field_evolution.py",
+      "sha256": "525116bdf25666251e336a6f415b293409f017eff2d1a9b55bf155a5e474f6a6",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "paper/applied_energy_2026/archive/workstreams/figures_and_components/proposed_advanced_20260822/scripts/build_advanced_figure_interfaces.py",
+      "release_path": "scripts/advanced/build_advanced_figure_interfaces.py",
+      "sha256": "0e3ea0b0664cc6d4b4e5852a71c9ac3615847be00794209ed6b19e06effe9ce6",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "paper/applied_energy_2026/archive/workstreams/figures_and_components/proposed_advanced_20260822/scripts/plot_advanced_layout_prototypes.py",
+      "release_path": "scripts/advanced/plot_advanced_layout_prototypes.py",
+      "sha256": "d3bd48687e9e82ab00e3a300828aad874474da650143761a14c02d365fb5e6bb",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "scripts/v4/run_tiered_batch_20260829.sh",
+      "release_path": "provenance/original_workflows/run_tiered_batch_20260829.sh",
+      "sha256": "4a827f546a3c2117a35aa4498ee6b991ea2d8703143d4a0edf36ca8e68fb8287",
+      "frozen_20260829_sha256": "4a827f546a3c2117a35aa4498ee6b991ea2d8703143d4a0edf36ca8e68fb8287",
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "scripts/v4/validate_final_inputs.py",
+      "release_path": "provenance/original_workflows/validate_final_inputs.py",
+      "sha256": "8de43edfb272420a69465f1b2ecfcd62721d4d3f93d5e1f5aa9e825d7ddfa8cb",
+      "frozen_20260829_sha256": "8de43edfb272420a69465f1b2ecfcd62721d4d3f93d5e1f5aa9e825d7ddfa8cb",
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "scripts/v4/audit_verified_submission_batch_20260822.py",
+      "release_path": "provenance/original_workflows/audit_verified_submission_batch_20260822.py",
+      "sha256": "be92f474c1ab05f91a22c48ad8c78a412bae3ca0446c3c7f7d55ef637b6cac18",
+      "frozen_20260829_sha256": "be92f474c1ab05f91a22c48ad8c78a412bae3ca0446c3c7f7d55ef637b6cac18",
+      "transformation": "byte-identical copy"
+    }
+  ]
+}
