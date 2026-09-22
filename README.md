@@ -90,7 +90,7 @@ The manuscript additionally reports eight paired sensitivity arms — R1–R8 co
 - `provenance/`: the file-level source manifest, the superseded batch drivers of earlier design generations, and the figure-input preparation programs.
 - `docs/INPUTS.md`: required external files and their roles.
 - `docs/WORKFLOW.md`: scenario execution, comparison and figure sequence.
-- `models/v4/`, `scripts/advanced/`: the v1.0.0 implementation, kept unchanged for the archived release.
+- `models/v4/`, `scripts/advanced/`: the earlier implementation, kept unchanged from the release's first publication.
 
 ## Interpretation
 
