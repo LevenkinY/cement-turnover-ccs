@@ -1,18 +1,29 @@
 # Capacity turnover, plant-level resources and CCS planning
 
-Code accompanying **Aligning capacity turnover with plant-level resource conditions to reduce carbon lock-in risks in China's shrinking cement sector**.
+Code accompanying **Co-optimizing capacity turnover and carbon capture to avoid lock-in in China's shrinking cement sector**.
 
-In a contracting cement industry, future CCS investment priorities depend on which industrial assets remain in operation. This study examines how alternative-fuel access and transport–storage conditions interact with capacity turnover to shape future production, capture responsibility and source–sink connections. A plant-level, multi-period mixed-integer model jointly determines production allocation, exit, same-site renewal, alternative-fuel deployment and CCS for China's 1,572 inherited clinker lines over 2025–2060.
+In a contracting cement industry, future CCS investment priorities depend on which industrial assets remain in operation. This study co-optimizes plant-level capacity turnover, alternative-fuel use and carbon capture for China's 1,572 inherited clinker lines over 2025–2060 under a common carbon budget, and traces how spatial differences in fuel access — by changing plants' pre-capture abatement opportunities — reshape which lines survive and what the surviving fleet must capture. A resource-neglect counterfactual commits a capacity path selected with AF spatial differences neutralized, and measures the additional discounted cost of honouring that commitment under real resource conditions (planning regret), reported with solver-bound intervals across eight paired sensitivity arms.
 
-Structural counterfactuals test the consequences of committing to a capacity path before accounting for spatial resource conditions. The analysis distinguishes the economic penalty of a fixed path (planning regret) from additional pre-capture emissions and compensatory capture requirements under a common carbon budget. Cross-scenario and near-optimal diagnostics distinguish persistent planning opportunities from conditional asset and connection choices.
+This code-only distribution contains the plant-level, multi-period mixed-integer optimization model, its input-preparation programs, the structural counterfactual and near-optimal identity interfaces, the scenario batch drivers, the run-comparison analysis tools and the manuscript figure programs. See `provenance/source_code_manifest.json` for the file-level correspondence between every released file and its source in the author's project.
 
-This code-only distribution contains the plant-level, multi-period mixed-integer optimization model, structural counterfactual analysis, near-optimal identity analysis, and manuscript data-figure scripts. The seven core model files are byte-identical to the code recorded in the study's 2026-08-29 corrected-input evidence freeze. Supporting plotting scripts reflect the subsequent manuscript figure organization. See `provenance/source_code_manifest.json` for file-level correspondence.
+## Release status
+
+| Version | Contents | State |
+|---|---|---|
+| **2.0.0** (current default branch) | the **v5** model, the batch that produced the manuscript numbers, and the manuscript figure programs | under `v5/` and `paper/RCR/figure_build/` |
+| **1.0.0** (tagged release) | the earlier **v4** model, its counterfactual analyses and the previous figure workflow | under `models/v4/`, `scripts/v4/`, `scripts/advanced/` |
+
+Both model generations remain in the checkout, so the archived v1.0.0 tag and the current default branch differ only by addition. The manuscript's numbers and figures come from the **v5** model.
+
+> **Public case labels were renumbered for the current manuscript.** The table below follows the manuscript's run register (Supplementary Table S6). The v1.0.0 README used an earlier mapping in which S2 meant AF equalization, S3 offshore parity, S4 slow contraction and S5 deep contraction. When in doubt, use the table below and the solver alias it names.
 
 ## Access and reproducibility boundary
 
 **Input datasets, solved results, figure-source tables, geographic layers, manuscript drafts and solver licences are not included.** Without the study inputs, this repository supports code inspection and data-free tests, not numerical reproduction of the manuscript. The configuration file necessarily includes model parameters and reference-budget constants; these are part of the released model, not a release of the underlying datasets.
 
 The data-free tests are synthetic software checks, not empirical validation. Full model runs require the separately obtained study inputs and a valid Gurobi licence. Installing `gurobipy` does not provide an unrestricted solver licence; the full national model exceeds the size of a restricted trial licence.
+
+Released files are byte-identical copies of the author's working sources, so a comment inside one may refer to an internal development document, data ledger or scratch directory that is not part of this distribution. Those references are development history, not instructions; `docs/INPUTS.md` lists the paths that actually matter for a run.
 
 ## Installation
 
@@ -26,19 +37,24 @@ python scripts/verify_release.py
 python -m unittest discover -s tests -v
 ```
 
-`requirements.txt` pins direct dependencies. `requirements-lock.txt` records their installed transitive dependencies on the packaging machine. It does not lock platform-specific GDAL/PROJ binaries or proprietary fonts and is not represented as a recovered lockfile for every historical solve. Gurobi and third-party libraries remain subject to their own licences.
+`requirements.txt` pins the direct dependencies of the released code. `requirements-lock.txt` records their installed transitive dependencies on the packaging machine. It does not lock platform-specific GDAL/PROJ binaries or proprietary fonts and is not represented as a recovered lockfile for every historical solve. Gurobi and third-party libraries remain subject to their own licences.
 
 ## Public scenario names
 
-| Manuscript case | Meaning | Internal solver name | Demand |
-|---|---|---|---|
-| S1 | Central heterogeneous suitability | `S1_baseline` | `d_medium` |
-| S2 | AF-spatial neutralization | `S3_all_spatial_equalized` | `d_medium` |
-| S3 | Offshore cost parity | `S5_offshore_parity` | `d_medium` |
-| S4 | Slow contraction | `S1_baseline` | `d_high` |
-| S5 | Deep contraction | `S1_baseline` | `d_low` |
+All six cases share the central resource configuration and the same absolute B40 carbon budget; they differ in the demand pathway or in the committed capacity path.
 
-Use the public wrapper below. Legacy options named `S2_front_end` or `S4_storage_300km` in the unchanged solver are **not** manuscript S2 or S4. All five manuscript cases share the same absolute B40 carbon budget.
+| Manuscript case | Meaning | Internal solver name | Demand | Committed path |
+|---|---|---|---|---|
+| S1 | Central joint optimization | `S1_baseline` | `d_medium` | — |
+| S2 | Slow contraction | `S1_baseline` | `d_high` | — |
+| S3 | Deep contraction | `S1_baseline` | `d_low` | — |
+| S4 | AF spatial equalization (source of the committed path) | `S3_all_spatial_equalized` | `d_medium` | — |
+| S5 | Planning regret: S4's path fixed under real AF conditions | `S1_baseline` | `d_medium` | from S4 |
+| S6 | Procedure check: S1's own path fixed back into S1 | `S1_baseline` | `d_medium` | from S1 |
+
+Legacy options named `S2_front_end` or `S4_storage_300km` in the unchanged solver are **not** manuscript S2 or S4, and several bare numeric aliases still resolve to those legacy cases. Always pass the full internal name, as `scripts/run_case.py` does.
+
+Use the public wrapper below. It never searches the author's parent project for missing data, never downloads data, and refuses to overwrite an existing result directory for the selected case. It uses the model unchanged; raw solver outputs and regenerated tables remain local and are excluded by `.gitignore`.
 
 ```bash
 # Data-free command preview; no optimization is launched.
@@ -46,45 +62,44 @@ python scripts/run_case.py --case S1 --dry-run
 
 # After the required data have been obtained and placed as documented:
 python scripts/check_inputs.py
-python scripts/run_case.py --case S1
-python scripts/run_case.py --case S2
-python scripts/run_case.py --case S3
-python scripts/run_case.py --case S4
-python scripts/run_case.py --case S5
+python scripts/run_case.py --case S1     # central joint optimum
+python scripts/run_case.py --case S2     # slow contraction
+python scripts/run_case.py --case S3     # deep contraction
+python scripts/run_case.py --case S4     # AF spatial equalization
 
-# A fixed-turnover counterfactual after S1 has been solved:
-python scripts/run_case.py --case S2 \
-  --reference results/v4/final_verified_inputs_20260829/full/S1_baseline_results.json \
-  --fix turnover --output results/v4/final_verified_inputs_20260829/s2_fixed_s1_turnover
+# The commitment case fixes S4's capacity path under real resource conditions:
+python scripts/run_case.py --case S5 --reference results/v5/S4
+
+# The procedure check fixes S1's own path back into S1:
+python scripts/run_case.py --case S6 --reference results/v5/S1
 ```
 
-The wrapper never searches the author's parent project for missing data, never downloads data, and refuses to overwrite an existing result or table directory for the selected case. It uses the model unchanged. Raw solver outputs and all regenerated tables remain local and are excluded by `.gitignore`.
+The manuscript additionally reports eight paired sensitivity arms — R1–R8 covering AF cost, AF effectiveness, the physical carbon burden of the captured stream, operating economics, spatial resolution, terminal treatment, EOR revenue and storage injection rates — and two commitment-relaxation runs (K1/K2). These are driven by `v5/scenarios/run_v5_formal_26.sh`, which re-optimizes each arm jointly and again with S4's path fixed, so that every premium compares the same commitment under changed conditions.
 
 ## Contents
 
-- `models/v4/src_v4/`: final optimization formulation, inputs loader, parameter configuration, fixed-path and near-optimal interfaces, result extraction.
-- `scripts/v4/`: selected final analytical and data-figure workflows.
-- `scripts/advanced/`: plant-level atlas and provincial figure interfaces and plotting.
-- `tests/`: data-free integrity and synthetic interface tests.
-- `models/v4/tests/`: original integration tests, requiring study data and, for some tests, Gurobi.
+- `v5/model/src_v5/`: the optimization formulation (`model/final_builder.py`, `model/carbon_streams.py`), input loader, parameter configuration (`config_v5.py`), fixed-path and near-optimal interfaces, result extraction and backbone analysis.
+- `v5/model/preprocessing/`: programs that build the derived input layers — plant-level AF accessibility, the market-node and arc layer, plant location tiers and source clusters.
+- `v5/model/validate_final_inputs.py`, `v5/model/closure_example_af_ccs.py`: the input validator and a single-plant arithmetic closure example for the two capture calibres.
+- `v5/model/tests/`: original integration tests. They load study data and some need a solver licence.
+- `v5/scenarios/`: the manuscript batch driver, a single-scenario runner and the comparison tools (run table and bound-aware planning loss, paired-configuration verification, arc-feasibility and arc-economics certificates, manuscript number extraction).
+- `paper/RCR/figure_build/`: the programs that generate manuscript Figs. 2–5 and Supplementary Figs. S1–S9. The conceptual Fig. 1 is author-designed and is not generated by these programs.
+- `scripts/v4/`: the figure style hub and shared plotting helpers imported by the figure programs, retained from the previous release.
+- `provenance/`: the file-level source manifest, the superseded batch drivers of earlier design generations, and the figure-input preparation programs.
 - `docs/INPUTS.md`: required external files and their roles.
-- `docs/WORKFLOW.md`: counterfactual, sensitivity and plotting sequence.
-- `provenance/`: code-only provenance. Original audit/batch scripts are retained for inspection, not as portable public entry points.
-
-The conceptual Fig. 1 is author-designed and is not generated by the quantitative plotting scripts. Numerical manuscript figures are now Figs. 2–8 and Supplementary Figs. S1–S10. Some source-table filenames retain earlier numbering; use the mapping in `docs/WORKFLOW.md`.
+- `docs/WORKFLOW.md`: scenario execution, comparison and figure sequence.
+- `models/v4/`, `scripts/advanced/`: the v1.0.0 implementation, kept unchanged for the archived release.
 
 ## Interpretation
 
-S2 is the main structural identification experiment. S3 is auxiliary and is mediated by EOR economics. Near-optimal solutions are representative diagnostics, not strict identity extrema. Aggregated source–storage opportunities are not optimized shared-pipeline routes. This is a system-planning model, not a unique plant-level forecast.
+S1–S5 form the evidence chain: S4 is the resource-neglect counterfactual used as the identification experiment, S5 carries the planning-regret estimate, and S6 is a procedural check that the fixed-path machinery reproduces the joint solution. The near-optimal identity interface produces representative diagnostics, not strict identity extrema. Aggregated source–storage opportunities are not optimized shared-pipeline routes: the model assigns direct plant-to-storage flows. This is a system-planning model, not a unique plant-level forecast.
 
-Carbon lock-in risk refers here to the risk that mismatched capacity commitments increase reliance on compensatory abatement. Planning regret measures the associated cost penalty, not a probability of lock-in or an inevitable increase in net emissions. The model supports staged appraisal and preservation of options, rather than approval of specific infrastructure projects.
+Carbon lock-in risk refers here to the risk that mismatched capacity commitments increase reliance on compensatory abatement. Planning regret measures the associated cost penalty, not a probability of lock-in or an inevitable increase in net emissions. Premiums are reported as solver-bound intervals; an interval containing zero is reported as unconfirmed and is never resolved by adjusting a parameter. The model supports staged appraisal and preservation of options, rather than approval of specific infrastructure projects.
 
 ## Citation, release and licence
 
 Repository: https://github.com/LevenkinY/cement-turnover-ccs
 
-Version **v1.0.0** is the code-only manuscript release, dated 2026-08-31. The released code and accompanying documentation are provided under the **MIT License** (see `LICENSE`). This licence does not cover third-party libraries, Gurobi, or any separately obtained datasets.
+Version **2.0.0** is the code-only release accompanying the current manuscript. The released code and accompanying documentation are provided under the **MIT License** (see `LICENSE`). This licence does not cover third-party libraries, Gurobi, or any separately obtained datasets.
 
-The default branch's research overview reflects the revised manuscript title. The archived **v1.0.0** release and its model code remain unchanged.
-
-See `CITATION.md` and `CITATION.cff` for software citation metadata. The software maintainer is identified by the verified GitHub account `LevenkinY`; this is not a statement of the associated manuscript's full author list. Please cite the versioned software release and the associated article when available.
+The archived **v1.0.0** release and its model code remain unchanged. See `CITATION.md` and `CITATION.cff` for software citation metadata. The software maintainer is identified by the verified GitHub account `LevenkinY`; this is not a statement of the associated manuscript's full author list. Please cite the versioned software release and the associated article when available.

@@ -1,76 +1,103 @@
 # Execution and figure workflow
 
-Run commands from this repository root with the environment activated. Steps after the data-free tests require external inputs or solved outputs, which are not distributed here.
+Run commands from this repository root with the environment activated. Everything after the data-free tests requires external inputs or solved outputs, which are not distributed here. The run scripts call `.venv/bin/python` relative to the repository root, matching the documented environment.
 
 ## 1. Core model
 
-`scripts/run_case.py` selects the public S1–S5 cases and the paper's role-specific solve settings. Use `--dry-run` before starting a solve. The unchanged solver interface is also available:
-
 ```bash
-export PYTHONPATH="$PWD/models/v4"
-python -m src_v4.main --help
+# Public case wrapper: maps S1-S6 to the unchanged solver.
+python scripts/run_case.py --case S1 --dry-run
+python scripts/check_inputs.py
+python scripts/run_case.py --case S1
+
+# Equivalent direct call (single-scenario runner):
+bash v5/scenarios/run_v5_s1.sh my_run
+PYTHONPATH=v5/model python -m src_v5.main --help
 ```
 
-The retained core settings are minimum utilization 0.40, early-exit cost 130 CNY/t annual capacity, same-site renewal cost 400 CNY/t annual capacity, and a 40-year lifetime. No ban on CCS additions after 2045 is imposed. Structural counterfactuals are not causal estimates.
+The central configuration used by the manuscript is the model default: plant lifetime 40 years, same-site renewal available from 3,200 t/d, minimum operating utilization 0.30, fixed operating cost 40 CNY per tonne of annual capacity, early-retirement cost 17 CNY/t scaled by remaining life, 310 operating days per year, a minimum commercial-capture operating commitment of 15 years, and short/medium/long-haul transport rates of 0.55/0.12/0.05 CNY per tonne-kilometre over the 200 km and 600 km breaks. All of these are scalar constants in `v5/model/src_v5/config_v5.py`, which is the authoritative list; every run also dumps its `effective_config` block into the result JSON, and that dump — not this paragraph — is what a paired comparison checks.
 
-## 2. Full experimental design
+The central configuration builds to 445,480 variables (37,728 binary) and 388,042 constraints. Solver profiles are `screen` (3% gap, screening only — no number from it enters the manuscript), `explore` (6%, mechanism checks) and `final` (MIPFocus 2), as defined in `config_v5.py`; the manuscript runs pass the `final` profile together with `--mip-gap 0.005`, a 7,200 s limit for joint runs and a 1,200 s limit for fixed-path runs.
 
-The original frozen batch script is provided under `provenance/original_workflows/`. It records five core cases, nested fixed-turnover/fixed-dispatch comparisons, reverse commitments and the null control, the 35-year lifetime case, four representative near-optimal cases, and utilization settings 0.20/0.30/0.50. Together these comprise the 30 registered solved packages.
+## 2. Derived input layers
 
-Those archival scripts retain their original repository-relative assumptions. **Do not execute them from the provenance directory.** Exact audit replay requires restoring them to their recorded `scripts/v4/` paths and obtaining the full private audit/input companion bundle. For public inspection and individual reproduction, use `scripts/run_case.py` and the original solver's documented options instead. Nothing in this package bypasses the original consistency checks.
-
-Fixed-turnover cases use `--fixed-capacity-path PATH --fixed-capacity-mode turnover`; fixed-dispatch cases use `turnover_and_dispatch`. The latter retains the frozen numerical-tolerance handling in `counterfactual.py`. Numerical diagnostics must be checked before interpreting cost differences.
-
-Near-optimal cases use the original `--near-opt-identity-reference`, `--near-opt-cost-reference`, `--near-opt-cost-tolerance 0.001`, direction and scope options. Their identity objectives differ from the economic objective and may have wide time-limit bounds. Record both phases; never call representative solutions a complete near-optimal frontier.
-
-## 3. Analysis order
-
-1. `analyze_capacity_feedback_counterfactual.py` for public S2 and each turnover sensitivity.
-2. `analyze_storage_feedback_counterfactual.py` for public S3 with EOR qualification.
-3. `analyze_near_optimal_identity_frontier.py` using a case manifest with columns `case_id`, `scenario`, `direction`, `scope`, `cost_tolerance`, `result_json`, `cost_reference_json`, `identity_reference_json`.
-4. `analyze_writing_ready_storyline_v2.py` for five-case identity, responsibility and tier tables.
-5. `build_utilization_postprocess_20260822.py` for utilization-floor summaries.
-6. Bounded-endpoint opportunities, explicitly overriding this script's historical defaults:
+Rebuild these before a first solve; each writes into `v5/data/` or `data/model_input/`.
 
 ```bash
-python scripts/v4/analyze_robust_corridor_opportunities.py \
-  --runs results/v4/final_verified_inputs_20260829 \
-  --output-dir results/v4/postprocess_robust_corridors_bounded_endpoints_20260829
+PYTHONPATH=v5/model python v5/model/preprocessing/build_demand_nodes.py       # 50 km descriptive nodes
+PYTHONPATH=v5/model python v5/model/preprocessing/build_market_nodes.py       # market nodes + candidate arcs
+python v5/model/preprocessing/build_plant_af_catchment.py                     # corrected AF accessibility
+python v5/model/preprocessing/build_plant_location_tier.py                    # location tier
+python v5/model/preprocessing/build_source_clusters.py                        # source clusters and sink whitelist
 ```
 
-Use `--help` for each argument-taking analysis. Case/result metadata must match the exact reference files. Some original programs emit analytical reports containing numerical findings, but no such outputs are included in this code release.
+Run them in that order: the market-node build consumes the 50 km layer, and a solve consumes all five outputs plus the core-solve tables listed in `docs/INPUTS.md`. Two certificate programs test the market layer before it is used: `check_arc_feasibility.py` (exact Hall feasibility of the arc set under each demand pathway, using Gurobi) and `screen_arc_economics.py` (delivered-cost comparison between the frozen and a densified arc set from a fixed incumbent).
 
-## 4. Rebuild source tables, then plot
+## 3. Full experimental design
+
+`v5/scenarios/run_v5_formal_26.sh` is the batch that produced the manuscript numbers. It defines the core chain (C1 central, C2 high demand, C3 low demand, C4 AF-spatial equalization, C5 the equalized path fixed back under real conditions, C6 the self-check that fixes S1's own path back into S1), eight paired sensitivity arms (R1 AF cost, R2 AF effectiveness, R3 physical carbon burden of the captured stream, R4 operating economics, R5 spatial resolution, R6 terminal treatment, R7 EOR revenue, R8 storage injection rate) and the two commitment-relaxation runs K1/K2. Each arm is solved twice — jointly and with S4's path fixed — so the premium compares the same commitment under changed conditions.
 
 ```bash
-python scripts/v4/prepare_main_figure_data_2026_v2.py
-python scripts/advanced/build_advanced_figure_interfaces.py \
-  --result-dir results/v4/final_verified_inputs_20260829/full/S1_baseline \
-  --spatial-assets paper/applied_energy_2026/submission/source_data_verified_20260829/fig3_spatial_assets_v2.csv \
-  --output-dir paper/applied_energy_2026/submission/source_data_verified_20260829/advanced_interfaces \
-  --public-case S1 --evidence-status canonical --expected-lines 1572
-python scripts/advanced/plot_advanced_layout_prototypes.py \
-  --interface-dir paper/applied_energy_2026/submission/source_data_verified_20260829/advanced_interfaces \
-  --output-dir paper/applied_energy_2026/submission/figures \
-  --main-figure-names --submission-formats
-python scripts/v4/make_main_figures_2026_v2.py
-python scripts/v4/make_si_figures_2026_v2.py
-python scripts/v4/make_paper_figures_2026_si.py
-python scripts/v4/make_fig_source_field_evolution.py
+bash v5/scenarios/run_v5_formal_26.sh                # 0.005 gap, final profile, 7,200 s
+ROOT_OVERRIDE=v5/results/formal_v1_20260914 \
+  bash v5/scenarios/run_v5_formal_26.sh 0.005 final 7200    # reuse finished runs
 ```
 
-Preserved plotting programs generate submission formats and do not change the optimization. They may overwrite previously generated local graphics, so use a clean reproduction checkout. Matplotlib falls back if Arial is unavailable; font differences can change layout and require manual review.
+Runs whose result JSON already exists are skipped, so a partial batch resumes. Fixed-path runs are much easier than joint ones and receive a shorter limit (`FIXED_SECS`, default 1,200 s). The batch deliberately skips the 75-node spatial arm when `v5/data/alt_market_75/` is absent, which is the case in a data-free checkout.
+
+Two notes on the shipped script text: its header calls the design "26 logical tasks" although the enumerated list sums to 24 solves, and it refers to internal documents that are not distributed here. Neither affects execution.
+
+The superseded batch drivers of earlier design generations are kept under `provenance/earlier_batches/` for inspection: `run_v5_batch.sh` (an earlier public five-scenario set whose labels predate the manuscript's renumbering — do not read its mapping table as the manuscript's), `run_v5_layer2.sh`, `run_v5_core_evidence.sh` and `rerun_fixed_path_2pct.sh`. They still resolve the repository root, but their hard-coded run directories refer to result trees that are not part of this distribution.
+
+## 4. Comparison discipline
+
+Numbers that pair two optimized runs are reported as solver-bound intervals, never as single values. Three tools make that explicit.
+
+```bash
+# 1. Run table, cost calibers, asset overlap and bound-valid premiums:
+python v5/scenarios/analyze_runs.py v5/results/formal_v1_20260914 \
+  --reference C1_central_J --out v5/results/formal_v1_20260914/analysis --csv
+
+# 2. Per-pair configuration check before interpreting any premium:
+python v5/scenarios/verify_pair_configs.py JOINT.json FIXED.json
+
+# 3. Planning loss with its bound interval and a resolution verdict:
+python v5/scenarios/report_planning_loss.py JOINT.json FIXED.json --label R1
+```
+
+A pair whose `effective_config` blocks differ in anything other than the intended treatment is not comparable, and `verify_pair_configs.py` fails it. A premium whose interval contains zero is reported as unconfirmed; it is never resolved by relaxing a parameter. `comparison_contract.py` holds the classification rules that both tools apply. `extract_rd_numbers_20260915.py` extracts the manuscript's comparison tables from a finished batch and writes them to `v5/scenarios/rd_numbers_20260915/`.
+
+## 5. Figures
+
+Figure inputs are extracted from a finished batch first, then the figure programs run. All of them are PNG-only, 190 mm (main) or 155 mm (supplementary) at 600 dpi, and each carries numeric assertions that stop the render when a value has moved.
+
+```bash
+python v5/scenarios/extract_rd_numbers_20260915.py                  # group tables (data02_*.csv)
+python provenance/figure_input_prep/m2_swap_group_drivers.py        # plant-level metric table
+python provenance/figure_input_prep/extract_fig3b_resource_conditions.py
+python provenance/figure_input_prep/extract_capture_task_decomposition.py
+python provenance/figure_input_prep/extract_fig5b_spatial_reconfig.py
+
+python paper/RCR/figure_build/make_rcr_fig23_v5_20260915.py         # Figs. 2-3
+python paper/RCR/figure_build/make_rcr_fig45_v5_20260915.py         # Figs. 4-5, Fig. S1
+python paper/RCR/figure_build/make_rcr_figS_v5_20260919.py          # Figs. S2-S6
+python paper/RCR/figure_build/make_rcr_figS7_v5_20260919.py         # Figs. S7-S8
+python paper/RCR/figure_build/make_rcr_figS9_v2_20260923.py         # Fig. S9 (current version)
+```
+
+The figure-input programs are the ones the author ran from a scratch directory; they resolve the repository root from their own location and write their tables next to themselves. They must run in the order above, because the resource-condition table consumes the metric table.
 
 | Manuscript figure | Source workflow |
 |---|---|
-| Fig. 1 | Author-designed conceptual diagram; not included |
-| Figs. 2–3 | Advanced plant/province interfaces |
-| Figs. 4–7, Supplementary Fig. S10 | Main quantitative plotting program |
-| Fig. 8 | Source-field evolution program |
-| Supplementary Fig. S1 | National overview in main plotting program |
-| Supplementary Figs. S2–S6 | `make_paper_figures_2026_si.py` |
-| Supplementary Figs. S7–S9 | `make_si_figures_2026_v2.py` |
+| Fig. 1 | Author-designed conceptual diagram; not generated by these programs |
+| Figs. 2–3 | `make_rcr_fig23_v5_20260915.py` |
+| Figs. 4–5, Supplementary Fig. S1 | `make_rcr_fig45_v5_20260915.py` |
+| Supplementary Figs. S2–S6 | `make_rcr_figS_v5_20260919.py` |
+| Supplementary Figs. S7–S8 | `make_rcr_figS7_v5_20260919.py` |
+| Supplementary Fig. S9 | `make_rcr_figS9_v2_20260923.py` (the earlier S9 panel set inside `make_rcr_fig45_v5_20260915.py` is superseded) |
 
-## Validation limits
+The style hub is `scripts/v4/figure_system_2026_common.py`, imported by every figure program together with shared map helpers in `scripts/v4/make_main_figures_2026_v2.py`. Matplotlib falls back if Arial is unavailable; font differences can change layout and require manual review. The figure programs write to `paper/RCR/figures/`, which is ignored by `.gitignore`.
 
-The release tests check source integrity, scenario mapping, configuration and synthetic path extraction. They do not validate a national solve or image layout without data. Exact plant identities can vary between near-optimal solutions, platforms and solver versions; use solver bounds and the manuscript's stated comparison metrics rather than assuming deterministic identity reproduction.
+## 6. Validation limits
+
+The released data-free tests check source integrity, the public case mapping, the configuration and synthetic path extraction. The original integration tests under `v5/model/tests/` load study data through `load_all()` and are not runnable without it. Neither validates a national solve or image layout. Exact plant identities can vary between near-optimal solutions, platforms and solver versions; use solver bounds and the manuscript's stated comparison metrics rather than assuming deterministic identity reproduction.

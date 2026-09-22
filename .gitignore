@@ -2,7 +2,15 @@
 /data/
 /input/
 /results/
-/paper/
+/output/
+# Manuscript material is not distributed. The one exception is the figure
+# programs themselves, which are code and are part of the released pipeline.
+# Anything those programs write (PNG, PDF, CSV) remains ignored.
+/paper/*
+!/paper/RCR/
+/paper/RCR/*
+!/paper/RCR/figure_build/
+!/paper/RCR/figure_build/*.py
 *.csv
 *.xlsx
 *.xls

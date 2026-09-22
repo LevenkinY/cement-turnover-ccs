@@ -1,17 +1,18 @@
 cff-version: 1.2.0
 message: "Please cite this versioned software release and the associated article when available."
 type: software
-title: "Capacity turnover and CCS planning in China's cement sector: code"
+title: "Capacity turnover, plant-level resources and CCS planning in China's cement sector: code"
 authors:
   - name: "LevenkinY"
     website: "https://github.com/LevenkinY"
 repository-code: "https://github.com/LevenkinY/cement-turnover-ccs"
-url: "https://github.com/LevenkinY/cement-turnover-ccs/releases/tag/v1.0.0"
-version: "1.0.0"
-date-released: "2026-08-31"
+url: "https://github.com/LevenkinY/cement-turnover-ccs/releases/tag/v2.0.0"
+version: "2.0.0"
+date-released: "2026-09-22"
 license: MIT
 keywords:
   - cement
   - carbon capture and storage
   - capacity turnover
+  - carbon lock-in
   - mixed-integer optimization

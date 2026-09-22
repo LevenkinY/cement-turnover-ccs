@@ -1,6 +1,332 @@
 {
-  "evidence_version": "20260829",
+  "release_version": "2.0.0",
+  "model_versions": {
+    "v4": "v1.0.0 release, 2026-08-29 evidence freeze",
+    "v5": "current manuscript implementation, formal_v1_20260914 batch"
+  },
   "files": [
+    {
+      "source_path": "v5/model/src_v5/__init__.py",
+      "release_path": "v5/model/src_v5/__init__.py",
+      "sha256": "d54aa404f59f3612da42d328628db46af42506eccab55d2b47cb1e6656a295c8",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "v5/model/src_v5/config_v5.py",
+      "release_path": "v5/model/src_v5/config_v5.py",
+      "sha256": "d3dfc9b719cf4ea8e6990e30c83975df386092aca46d74087ac0c6dbc0cb87c2",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "v5/model/src_v5/data_loader_v5.py",
+      "release_path": "v5/model/src_v5/data_loader_v5.py",
+      "sha256": "3a031d80a159c4939921844a349c9ff1961baa09c668f5fe7323c43051acf944",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "v5/model/src_v5/main.py",
+      "release_path": "v5/model/src_v5/main.py",
+      "sha256": "dca6954f66ce66c2887413e08605a24d2e864484eb56ba0107754b28f08bdaef",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "v5/model/src_v5/counterfactual.py",
+      "release_path": "v5/model/src_v5/counterfactual.py",
+      "sha256": "5730a12a00adece23811f69358764461f20d6e299f6163af9f4743f3c3ff9fd7",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "v5/model/src_v5/near_optimal_identity.py",
+      "release_path": "v5/model/src_v5/near_optimal_identity.py",
+      "sha256": "14e4487afeb1bfabb83076b18e29383d3a19ce13bd7cb56aa8d89041136d20b8",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "v5/model/src_v5/provenance.py",
+      "release_path": "v5/model/src_v5/provenance.py",
+      "sha256": "07182394fcf9b57f4399296a8ce68a6a3b7e19d5fddca4df611b19c783a50d56",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "v5/model/src_v5/model/__init__.py",
+      "release_path": "v5/model/src_v5/model/__init__.py",
+      "sha256": "8914aac22938f0d62f6b8495ba897abadb4c561bcfdf7dfc762291c94d2ed097",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "v5/model/src_v5/model/final_builder.py",
+      "release_path": "v5/model/src_v5/model/final_builder.py",
+      "sha256": "81a54d7377584840f31c9bac88fca58652fca642f24470b9378a186a6ccc040f",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "v5/model/src_v5/model/carbon_streams.py",
+      "release_path": "v5/model/src_v5/model/carbon_streams.py",
+      "sha256": "eaffee71fe504230e2a53e39125ad1220db020a8a6fc971afea1f6416cb3d75a",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "v5/model/src_v5/results/__init__.py",
+      "release_path": "v5/model/src_v5/results/__init__.py",
+      "sha256": "a7cbd9c3043a7973a730acbd37644309fade4d9862467be731a6c231a05c3dfb",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "v5/model/src_v5/results/extract.py",
+      "release_path": "v5/model/src_v5/results/extract.py",
+      "sha256": "076d28d5dc97ee6a3ba321372cd94bd7189ed8ac7a0ae4f24d598dca0a3251db",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "v5/model/src_v5/results/backbone_analysis.py",
+      "release_path": "v5/model/src_v5/results/backbone_analysis.py",
+      "sha256": "28cffb52a01eb317b7dfd855316f25a6101d95d08be6bafb26face20ab823103",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "v5/model/preprocessing/build_demand_nodes.py",
+      "release_path": "v5/model/preprocessing/build_demand_nodes.py",
+      "sha256": "b01149c8872927738f910313fc189c2fc4db4118e08e8058ed1e1297fb9fd33b",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "v5/model/preprocessing/build_market_nodes.py",
+      "release_path": "v5/model/preprocessing/build_market_nodes.py",
+      "sha256": "17a7675d5a796deff64b96e5908b0a555833e2925700fd2b06c6ed7de03d340e",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "v5/model/preprocessing/build_plant_af_catchment.py",
+      "release_path": "v5/model/preprocessing/build_plant_af_catchment.py",
+      "sha256": "e25cebbd06178e9eb497462d0edba6e2435ac183093964ddc798995ac1bce30e",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "v5/model/preprocessing/build_plant_location_tier.py",
+      "release_path": "v5/model/preprocessing/build_plant_location_tier.py",
+      "sha256": "9b2314881db64ac4c48b1e31f9724fea3dfc69d31d733204648676766ed730e2",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "v5/model/preprocessing/build_source_clusters.py",
+      "release_path": "v5/model/preprocessing/build_source_clusters.py",
+      "sha256": "d0d0a32cb4b97f3797fa8738149cced8776b19b12f8cf0bd61cca1e8c2795285",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "v5/model/tests/test_final_protocol.py",
+      "release_path": "v5/model/tests/test_final_protocol.py",
+      "sha256": "ae5c915597aa7e5f0e9e488f84788268b945c34d3e685f0582800a1a16f4ffb7",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "v5/model/tests/test_demand_and_lifetime_outputs.py",
+      "release_path": "v5/model/tests/test_demand_and_lifetime_outputs.py",
+      "sha256": "1a1093b84abc8fe6086cdb191ac45d92fad9ab0fe84267ec211400314f57d581",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "v5/model/tests/test_repair_20260914.py",
+      "release_path": "v5/model/tests/test_repair_20260914.py",
+      "sha256": "54deeab57177ae63154e9278f06f810f17fd2fa93ec93727bebd95edb455d08e",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "v5/model/tests/test_terminal_commitment_20260914.py",
+      "release_path": "v5/model/tests/test_terminal_commitment_20260914.py",
+      "sha256": "cbe91b336d12d20b59962624abf21c76088686514b920827800db7a5749e4d60",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "v5/model/validate_final_inputs.py",
+      "release_path": "v5/model/validate_final_inputs.py",
+      "sha256": "20538a66b55cd8208a11a7e6067077aba65a5f4130a17ec5830efb650b125981",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "v5/model/closure_example_af_ccs.py",
+      "release_path": "v5/model/closure_example_af_ccs.py",
+      "sha256": "ec32b035181d9b9c3d36d70ac55d13f98ec2eec5338bc21e5aa493b825ffda0f",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "v5/scenarios/run_v5_formal_26.sh",
+      "release_path": "v5/scenarios/run_v5_formal_26.sh",
+      "sha256": "17f73fd88e3a87e06066349739b7692eff1a60203872c75acd15388a8cbc4db8",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "v5/scenarios/run_v5_s1.sh",
+      "release_path": "v5/scenarios/run_v5_s1.sh",
+      "sha256": "b319e1918dc6b6aa577d102dee68cc10c6fcc28fcc037d3826f2613bfa0f5319",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "v5/scenarios/analyze_runs.py",
+      "release_path": "v5/scenarios/analyze_runs.py",
+      "sha256": "a13f4700174627b25e2832d294d2b93cd9c9933cadaab6b2d421b5655e67f736",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "v5/scenarios/comparison_contract.py",
+      "release_path": "v5/scenarios/comparison_contract.py",
+      "sha256": "39b3c551f8e101c85cf8733f555b6c80c092e323ce6ce1c2c2995c8766b39f1c",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "v5/scenarios/report_planning_loss.py",
+      "release_path": "v5/scenarios/report_planning_loss.py",
+      "sha256": "d604de8465bf78679e8ff762bfe1468698acbdb4e3c3b663fad95f88d136fbbd",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "v5/scenarios/verify_pair_configs.py",
+      "release_path": "v5/scenarios/verify_pair_configs.py",
+      "sha256": "b383e65bf25be0e59f6485e001a8405c73b535cb91a7759fac818d78c72b2c63",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "v5/scenarios/check_arc_feasibility.py",
+      "release_path": "v5/scenarios/check_arc_feasibility.py",
+      "sha256": "17a02ab1a38f5d090cb5af4c173cdd4a2103ac53a71797b330d05c0751888ff2",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "v5/scenarios/screen_arc_economics.py",
+      "release_path": "v5/scenarios/screen_arc_economics.py",
+      "sha256": "df832a8cef6a1e72b9ca7612747705ebe093ec16bed6e098428798fcb075e474",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "v5/scenarios/extract_rd_numbers_20260915.py",
+      "release_path": "v5/scenarios/extract_rd_numbers_20260915.py",
+      "sha256": "9b0cc75bcafa79b8dfeb31bb6f80c4f85fd4b1c4930633d83b33633e770c3e5b",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "paper/RCR/figure_build/make_rcr_fig23_v5_20260915.py",
+      "release_path": "paper/RCR/figure_build/make_rcr_fig23_v5_20260915.py",
+      "sha256": "efdfdac018cfa6f508c21ae7e2f0cd2dd890f0aeb27a07c2126be0b46b173c1f",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "paper/RCR/figure_build/make_rcr_fig45_v5_20260915.py",
+      "release_path": "paper/RCR/figure_build/make_rcr_fig45_v5_20260915.py",
+      "sha256": "311d2380dba4219add59b2642d53dc66a94610feec3d7e0fb770a0bf860abda2",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "paper/RCR/figure_build/make_rcr_figS_v5_20260919.py",
+      "release_path": "paper/RCR/figure_build/make_rcr_figS_v5_20260919.py",
+      "sha256": "4d0d470d062b673ecf988db1d9920f84debee13324b518fcaa73d8147b94041a",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "paper/RCR/figure_build/make_rcr_figS7_v5_20260919.py",
+      "release_path": "paper/RCR/figure_build/make_rcr_figS7_v5_20260919.py",
+      "sha256": "afd5dfb6c00124b8778f0796ba3e2f67e330e9d88c79d874ded41fb4a75570e0",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "paper/RCR/figure_build/make_rcr_figS9_v2_20260923.py",
+      "release_path": "paper/RCR/figure_build/make_rcr_figS9_v2_20260923.py",
+      "sha256": "c4572e8a6a4202e43215da03d7648ab259b8f132747c65500c67f826977aa190",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "v5/scenarios/run_v5_batch.sh",
+      "release_path": "provenance/earlier_batches/run_v5_batch.sh",
+      "sha256": "1694d70b107f50a746d2dba0e4d7e6ed980b00b6482c761e04b4814831764ce9",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "v5/scenarios/run_v5_layer2.sh",
+      "release_path": "provenance/earlier_batches/run_v5_layer2.sh",
+      "sha256": "d874922bc15e05524491be463e3ac817092cfcb03cfcdcf26cedf4ed92f351ea",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "v5/scenarios/run_v5_core_evidence.sh",
+      "release_path": "provenance/earlier_batches/run_v5_core_evidence.sh",
+      "sha256": "895284f3b8f6cadd6301168683a5fa402b82aedfbe7fd9b99be53f0abb50007e",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "v5/scenarios/rerun_fixed_path_2pct.sh",
+      "release_path": "provenance/earlier_batches/rerun_fixed_path_2pct.sh",
+      "sha256": "1a3ef07e3f55b04a7748b26b38d1ee813eddf795820171bc12861107bec5db06",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "tmp/fig_restructure_20260919/extract_fig3b_resource_conditions.py",
+      "release_path": "provenance/figure_input_prep/extract_fig3b_resource_conditions.py",
+      "sha256": "c9b0724bff2be784de85dd6f7b91b53fc8c37a25fe59d6cc483f5ace828539a8",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "tmp/fig_restructure_20260919/extract_fig5b_spatial_reconfig.py",
+      "release_path": "provenance/figure_input_prep/extract_fig5b_spatial_reconfig.py",
+      "sha256": "cccf835391b1730bd0a1f68282a1b1e915519b18b02af81d64c12b18e1057bdb",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "tmp/fig_restructure_20260919/extract_capture_task_decomposition.py",
+      "release_path": "provenance/figure_input_prep/extract_capture_task_decomposition.py",
+      "sha256": "a03787502f3a66c2a8952bdf6dfe173b93fd60845c27636947bfa5343dfd2612",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_path": "tmp/m2_analysis_20260918/m2_swap_group_drivers.py",
+      "release_path": "provenance/figure_input_prep/m2_swap_group_drivers.py",
+      "sha256": "91daaf3dec7618c841c06cfcc2a05a4d82c6a32020c357177073237d88138be8",
+      "frozen_20260829_sha256": null,
+      "transformation": "byte-identical copy"
+    },
     {
       "source_path": "models/v4/src_v4/__init__.py",
       "release_path": "models/v4/src_v4/__init__.py",

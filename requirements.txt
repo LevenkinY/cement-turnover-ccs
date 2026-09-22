@@ -1,7 +1,8 @@
-# Direct dependencies from the local environment at packaging time, 2026-08-31.
+# Direct dependencies of the released code, packaging environment 2026-09-22.
 pyomo==6.9.4
 gurobipy==12.0.3
 numpy==2.3.2
+scipy==1.17.1
 pandas==2.3.2
 openpyxl==3.1.5
 geopandas==1.1.1
