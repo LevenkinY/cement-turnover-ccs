@@ -1,29 +1,14 @@
 # v1.0.0 — Code-only manuscript release
 
-Released code covers the final plant-level optimization model, fixed-path counterfactuals, representative near-optimal identity analysis, selected post-processing programs and quantitative figure workflows.
+Code accompanying **Co-optimizing capacity turnover and carbon capture to avoid lock-in in China's shrinking cement sector**. First published 2026-08-31; the v5 model, its batch drivers and the manuscript figure programs were added to the same version on 2026-09-22.
 
-- Seven core model files match the 2026-08-29 corrected-input evidence freeze byte for byte.
-- 29 original source files have file-level checksums and source mappings.
-- Includes public S1–S5 scenario mapping, requirements snapshots, input-file specifications and workflow instructions.
-- Includes six data-free software tests. These do not substitute for empirical validation or a full national solve.
-- Licensed under MIT. Third-party software and separately obtained data retain their own terms.
+The release carries two model generations. The **v5** model produced the current manuscript's solved results; the earlier **v4** model is retained unchanged so that the analysis that preceded the current manuscript remains inspectable.
 
-No input datasets, solved outputs, figure-source tables, map files, manuscript drafts, credentials or Gurobi licence files are included. Full numerical reproduction requires the study inputs and a suitable Gurobi licence. Some original audit scripts remain inspection-only without the separately held provenance/input bundle, as explained in `docs/WORKFLOW.md`.
-
----
-
-# v2.0.0 — v5 model, current manuscript implementation
-
-Released code covers the v5 plant-level optimization model that produced the current manuscript's solved results, its input-preparation programs, the scenario batch driver, the run-comparison tools and the manuscript figure programs.
-
-- 46 v5 source files are byte-identical copies of the author's working sources, with file-level SHA-256 checksums and source mappings; the release manifest now covers 75 files in total.
-- Adds the four-layer alternative-fuel structure, the re-anchored capture-cost curves with their scale exponents and decline cases, the capacity-operating parameters, and the distributed market-demand layer.
-- Adds the manuscript's public case register S1–S6 (central, slow contraction, deep contraction, AF spatial equalization, planning regret, procedure check) alongside the batch's paired sensitivity arms R1–R8 and the commitment-relaxation runs K1/K2.
-- Adds the run-comparison tools that make paired comparisons auditable: paired-configuration verification, bound-aware planning-loss reporting and the run table.
-- Adds the figure programs behind manuscript Figs. 2–5 and Supplementary Figs. S1–S9.
+- 75 source files with file-level SHA-256 checksums and source mappings.
+- **v5 (current)**: the plant-level optimization formulation, input-preparation programs, the scenario batch driver, the run-comparison tools and the figure programs behind manuscript Figs. 2–5 and Supplementary Figs. S1–S9. It adds the four-layer alternative-fuel structure, the re-anchored capture-cost curves with their scale exponents and decline cases, the capacity-operating parameters, and the distributed market-demand layer.
+- **v4 (earlier)**: the model, counterfactual analyses and figure workflow first published in this release. Reachable as published at commit `9f104a244c844d21d73876c9d28fdb75f8322c63`.
+- Public case register S1–S6 (central, slow contraction, deep contraction, AF spatial equalization, planning regret, procedure check), the paired sensitivity arms R1–R8 and the commitment-relaxation runs K1/K2. The labels were renumbered for the current manuscript; the mapping in the first publication of this release is superseded.
 - 11 data-free software tests. These do not substitute for empirical validation or a full national solve.
 - Licensed under MIT. Third-party software and separately obtained data retain their own terms.
 
-**Public case labels changed.** The manuscript renumbered the public scenarios; the v1.0.0 mapping table is superseded. See the table in `README.md`.
-
-No input datasets, solved results, figure-source tables, geographic layers, manuscript drafts, credentials or Gurobi licence files are included. Full numerical reproduction requires the study inputs and a suitable Gurobi licence. The input validator and some scenario programs remain inspection-only without the separately held provenance bundle, as explained in `docs/INPUTS.md` and `docs/WORKFLOW.md`. The v4 model from v1.0.0 is retained unchanged in the same checkout.
+No input datasets, solved outputs, figure-source tables, map files, manuscript drafts, credentials or Gurobi licence files are included. Full numerical reproduction requires the study inputs and a suitable Gurobi licence. Some original audit and validator scripts remain inspection-only without the separately held provenance/input bundle, as explained in `docs/INPUTS.md` and `docs/WORKFLOW.md`.

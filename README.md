@@ -8,14 +8,16 @@ This code-only distribution contains the plant-level, multi-period mixed-integer
 
 ## Release status
 
-| Version | Contents | State |
+Version **1.0.0** is the single code-only release for this study. It carries two model generations.
+
+| Model | Location | Role |
 |---|---|---|
-| **2.0.0** (current default branch) | the **v5** model, the batch that produced the manuscript numbers, and the manuscript figure programs | under `v5/` and `paper/RCR/figure_build/` |
-| **1.0.0** (tagged release) | the earlier **v4** model, its counterfactual analyses and the previous figure workflow | under `models/v4/`, `scripts/v4/`, `scripts/advanced/` |
+| **v5** | `v5/`, `paper/RCR/figure_build/` | the model behind the current manuscript's solved results (batch `formal_v1_20260914`) |
+| **v4** | `models/v4/`, `scripts/v4/`, `scripts/advanced/` | the earlier implementation, retained unchanged from the release's first publication |
 
-Both model generations remain in the checkout, so the archived v1.0.0 tag and the current default branch differ only by addition. The manuscript's numbers and figures come from the **v5** model.
+Both generations remain in the checkout: the v4 files are the ones first published, and the v5 model was added to the same version on 2026-09-22 rather than issued as a new one. The manuscript's numbers and figures come from the **v5** model; the v4-only state as first published remains reachable at commit `9f104a244c844d21d73876c9d28fdb75f8322c63`.
 
-> **Public case labels were renumbered for the current manuscript.** The table below follows the manuscript's run register (Supplementary Table S6). The v1.0.0 README used an earlier mapping in which S2 meant AF equalization, S3 offshore parity, S4 slow contraction and S5 deep contraction. When in doubt, use the table below and the solver alias it names.
+> **Public case labels were renumbered for the current manuscript.** The table below follows the manuscript's run register (Supplementary Table S6). The mapping published with the first version of this release was different: S2 meant AF equalization, S3 offshore parity, S4 slow contraction and S5 deep contraction. When in doubt, use the table below and the solver alias it names.
 
 ## Access and reproducibility boundary
 
@@ -100,6 +102,6 @@ Carbon lock-in risk refers here to the risk that mismatched capacity commitments
 
 Repository: https://github.com/LevenkinY/cement-turnover-ccs
 
-Version **2.0.0** is the code-only release accompanying the current manuscript. The released code and accompanying documentation are provided under the **MIT License** (see `LICENSE`). This licence does not cover third-party libraries, Gurobi, or any separately obtained datasets.
+Version **1.0.0** is the code-only release accompanying this study, first published on 2026-08-31 and updated on 2026-09-22 with the v5 model that produced the current manuscript's results. The released code and accompanying documentation are provided under the **MIT License** (see `LICENSE`). This licence does not cover third-party libraries, Gurobi, or any separately obtained datasets.
 
-The archived **v1.0.0** release and its model code remain unchanged. See `CITATION.md` and `CITATION.cff` for software citation metadata. The software maintainer is identified by the verified GitHub account `LevenkinY`; this is not a statement of the associated manuscript's full author list. Please cite the versioned software release and the associated article when available.
+See `CITATION.md` and `CITATION.cff` for software citation metadata. The software maintainer is identified by the verified GitHub account `LevenkinY`; this is not a statement of the associated manuscript's full author list. Please cite the versioned software release and the associated article when available. Because the release carries two model generations, cite the version and state which model reproduces the numbers you use when that matters.

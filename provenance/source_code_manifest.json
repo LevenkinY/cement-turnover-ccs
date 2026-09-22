@@ -1,9 +1,10 @@
 {
-  "release_version": "2.0.0",
+  "release_version": "1.0.0",
   "model_versions": {
-    "v4": "v1.0.0 release, 2026-08-29 evidence freeze",
+    "v4": "earlier implementation, 2026-08-29 evidence freeze",
     "v5": "current manuscript implementation, formal_v1_20260914 batch"
   },
+  "pre_v5_commit": "9f104a244c844d21d73876c9d28fdb75f8322c63",
   "files": [
     {
       "source_path": "v5/model/src_v5/__init__.py",

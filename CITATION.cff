@@ -6,9 +6,9 @@ authors:
   - name: "LevenkinY"
     website: "https://github.com/LevenkinY"
 repository-code: "https://github.com/LevenkinY/cement-turnover-ccs"
-url: "https://github.com/LevenkinY/cement-turnover-ccs/releases/tag/v2.0.0"
-version: "2.0.0"
-date-released: "2026-09-22"
+url: "https://github.com/LevenkinY/cement-turnover-ccs/releases/tag/v1.0.0"
+version: "1.0.0"
+date-released: "2026-08-31"
 license: MIT
 keywords:
   - cement
